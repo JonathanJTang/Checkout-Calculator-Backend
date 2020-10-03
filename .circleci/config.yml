@@ -30,18 +30,19 @@ jobs:
 #       - python/save-cache
       
       - python/install-packages:
-#           args: django  # arguments to pass to pipenv install command
+          # arguments to pass to pipenv install command
+          args: django djangorestframework django-cors-headers
           pkg-manager: pipenv
       - run:
           command: |
+            cd server
             pipenv run python ./manage.py test
-          # command: ./manage.py test
           name: Test
-      - store_test_results: # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
-          path: test-results
-      # - store_artifacts: # Upload test summary for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
-      #     path: test-results
-      #     destination: tr1
+#       - store_test_results: # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
+#           path: test-results
+#       - store_artifacts: # Upload test summary for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
+#           path: test-results
+#           destination: tr1
 
 workflows:
   main:
