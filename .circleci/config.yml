@@ -34,7 +34,7 @@ jobs:
           pkg-manager: pipenv
       - run:
           command: |
-            pipenv run python manage.py test
+            pipenv run python ./manage.py test
           # command: ./manage.py test
           name: Test
       - store_test_results: # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
