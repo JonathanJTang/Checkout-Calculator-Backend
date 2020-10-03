@@ -1,38 +1,44 @@
 version: 2.1
 
 orbs:
-  python: circleci/python@0.2.1
+  python: circleci/python@1.1.0  # Common CircleCI tasks for Python
 
 jobs:
   build-and-test:
     executor: python/default
     steps:
       - checkout
-      # The "chown" command is used to grant CircleCI access to dependency locations
-      # - run: sudo chown -R circleci:circleci /usr/local/bin
-      # - run: sudo chown -R circleci:circleci /usr/local/lib/python3.6/site-packages
-      - restore_cache:
-      # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
-          key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
-      - run:
-          command: |  # use pipenv to install dependencies
-            sudo pip install pipenv
-            pipenv install
-      - save_cache: # cache Python dependencies using checksum of Pipfile as the cache-key
-          key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
-          paths:
-            - "venv"
-      # - python/load-cache
-      # - python/install-deps
-      # - python/save-cache
       
+#       The "chown" command is used to grant CircleCI access to dependency locations
+#       - run: sudo chown -R circleci:circleci /usr/local/bin
+#       - run: sudo chown -R circleci:circleci /usr/local/lib/python3.6/site-packages
+#       - restore_cache:
+#       # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
+#           key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
+#       - run:
+#           command: |  # use pipenv to install dependencies
+#             sudo pip install pipenv
+#             pipenv install
+#       - save_cache: # cache Python dependencies using checksum of Pipfile as the cache-key
+#           key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
+#           paths:
+#             - "venv"
+
+# Python orb version @0.2.1 steps
+#       - python/load-cache
+#       - python/install-deps
+#       - python/save-cache
+      
+      - python/install-packages:
+#           args: django  # arguments to pass to pipenv install command
+          pkg-manager: pipenv
       - run:
           command: |
             pipenv run python manage.py test
           # command: ./manage.py test
           name: Test
-      # - store_test_results: # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
-      #     path: test-results
+      - store_test_results: # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
+          path: test-results
       # - store_artifacts: # Upload test summary for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
       #     path: test-results
       #     destination: tr1
