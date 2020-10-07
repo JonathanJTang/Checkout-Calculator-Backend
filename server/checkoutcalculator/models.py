@@ -10,8 +10,9 @@ class Item(models.Model):
     available_stock = models.IntegerField(default=0)
 
     def __str__(self):
-        return "{}, ${}, Taxed={}, {} available".format(self.name, self.price, self.taxed_item,
-                                    self.available_stock)
+        return "{}, ${}, Taxed={}, {} available".format(self.name, self.price,
+                                                        self.taxed_item,
+                                                        self.available_stock)
 
     # def clean(self):
     #     # data from the form is fetched using super function 
