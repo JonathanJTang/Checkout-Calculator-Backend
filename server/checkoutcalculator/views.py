@@ -15,3 +15,4 @@ class ListItem(generics.ListAPIView):
 class DetailItem(generics.RetrieveUpdateAPIView):
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
+    
