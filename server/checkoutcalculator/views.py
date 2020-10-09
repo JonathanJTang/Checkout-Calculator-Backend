@@ -6,12 +6,13 @@ from .models import Item
 from .serializers import ItemSerializer
 
 
-# Create your views here.
-class ListItem(generics.ListCreateAPIView):
+# Only allows GET
+class ListItem(generics.ListAPIView):
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
-
-
-class DetailItem(generics.RetrieveUpdateDestroyAPIView):
+    
+# Allows GET, PUT, PATCH
+class DetailItem(generics.RetrieveUpdateAPIView):
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
+    

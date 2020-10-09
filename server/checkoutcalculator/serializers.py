@@ -8,5 +8,7 @@ class ItemSerializer(serializers.ModelSerializer):
             'id',
             'name',
             'price',
+            'taxed_item',
+            'available_stock'
         )
         model = Item

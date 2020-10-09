@@ -25,7 +25,8 @@ SECRET_KEY = '#tl_737#kmqf*(jgcaqik9py*mk0e8ln$u&q2h8mu#(o79t@%z'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['.localhost', '127.0.0.1', '[::1]', "192.168.137.175"]
+ALLOWED_HOSTS = ["*"]  # For development conveniences
 
 
 # Application definition
@@ -55,7 +56,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
+    # 'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -65,6 +66,12 @@ MIDDLEWARE = [
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
 )
+
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:3000',
+)
+
+# CORS_ALLOW_ALL_ORIGINS = True
 
 ROOT_URLCONF = 'server.urls'
 
