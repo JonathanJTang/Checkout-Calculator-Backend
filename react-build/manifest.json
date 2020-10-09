@@ -1,0 +1,15 @@
+{
+  "short_name": "Checkout Calc",
+  "name": "Checkout Calculator",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "452x452",
+      "type": "image/png"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
