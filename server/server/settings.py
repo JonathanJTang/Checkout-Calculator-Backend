@@ -92,17 +92,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'server.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
-
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
@@ -141,9 +130,32 @@ USE_TZ = True
 # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, os.pardir, 'react-build', 'static'))
 STATIC_URL = '/static/'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 # Extra places for collectstatic to find static files.
 # STATICFILES_DIRS = (
 #     os.path.join(BASE_DIR, 'static'),
 # )
 STATICFILES_DIRS = []
+
+import dj_database_url
+import dotenv
+dotenv_file = os.path.join(BASE_DIR, ".env")
+if os.path.isfile(dotenv_file):
+    dotenv.load_dotenv(dotenv_file)
+
+# Database
+# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+DATABASES = {}
+DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+print(DATABASES['default'])
+# options = DATABASES['default'].get('OPTIONS', {})
+# print(options)
+# options.pop('sslmode', None)
