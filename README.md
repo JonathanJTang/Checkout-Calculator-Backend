@@ -6,9 +6,10 @@ Authors: Team 6, Jonathan Tang (JonathanJTang) and İsmail Atadinç (kralgeliy1)
 
 Our Checkout Calculator backend built using Django, shared by both the mobile and web frontends.
 
-` `  
-` `  
-## Setup Instructions
+## Production link
+Go to [https://checkoutcalculator301.herokuapp.com/](https://checkoutcalculator301.herokuapp.com/) to see our hosted web frontend.
+
+## Development Environment Setup Instructions
 We ran our code from a Windows Subsystem Linux (WSL) terminal window, but these steps would probably work on Linux machines too.
 1. From the command line, install python module `pipenv` (eg using `pip`) and make sure the `pipenv` command can be accessed in the terminal (WSL: might need to restart the terminal)
 2. Clone this repository and navigate to the directory, ie `assignment-1-6-jonathanjtang-kralgeliy1-backend` (the location is important for `pipenv` to work properly).
