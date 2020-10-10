@@ -28,8 +28,7 @@ index = never_cache(TemplateView.as_view(template_name='index.html'))
 # Code based on tutorial at https://librenepal.com/article/django-and-create-react-app-together-on-heroku/
 # class FrontendAppView(View):
 #     """
-#     Serves the compiled frontend entry point (only works if you have run `yarn
-#     build`).
+#     Serves the compiled frontend entry point
 #     """
 #     index_file_path = os.path.abspath(os.path.join(settings.BASE_DIR, os.pardir, 'react-build', 'index.html'))
 
