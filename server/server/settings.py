@@ -12,22 +12,27 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
+import dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+dotenv_file = os.path.join(BASE_DIR, ".env")
+if os.path.isfile(dotenv_file):
+    dotenv.load_dotenv(dotenv_file)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '#tl_737#kmqf*(jgcaqik9py*mk0e8ln$u&q2h8mu#(o79t@%z'
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-# ALLOWED_HOSTS = ['.localhost', '127.0.0.1', '[::1]', "192.168.137.175"]
-ALLOWED_HOSTS = ["*"]  # For development conveniences
+ALLOWED_HOSTS = ['.localhost', '127.0.0.1', '[::1]', "checkoutcalculator.fly.dev"]
+# ALLOWED_HOSTS = ["*"]  # For development conveniences
 
 
 # Application definition
@@ -139,11 +144,6 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # )
 STATICFILES_DIRS = []
 
-import dj_database_url
-import dotenv
-dotenv_file = os.path.join(BASE_DIR, ".env")
-if os.path.isfile(dotenv_file):
-    dotenv.load_dotenv(dotenv_file)
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
@@ -154,8 +154,12 @@ if os.path.isfile(dotenv_file):
 #     }
 # }
 DATABASES = {}
-DATABASES['default'] = dj_database_url.config(conn_max_age=600)
-# print(DATABASES['default'])
+DATABASES['default'] = dj_database_url.config(
+                           conn_max_age=600,
+                           default='sqlite:///{}'.format(os.path.join(BASE_DIR, 'db.sqlite3'))
+                       )
+
+# SQLite database doesn't need SSL so a hacky workaround for local development
 # options = DATABASES['default'].get('OPTIONS', {})
 # print(options)
 # options.pop('sslmode', None)

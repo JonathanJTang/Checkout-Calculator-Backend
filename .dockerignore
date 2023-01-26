@@ -1,0 +1,10 @@
+fly.toml
+.git/
+# *.sqlite3
+
+server/.env
+# currently only a barebones small db is needed for this app
+# server/*.sqlite3
+Procfile
+.vscode/
+.circleci/

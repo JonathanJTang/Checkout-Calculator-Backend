@@ -1,21 +1,13 @@
-# assignment-1-6-jonathanjtang-kralgeliy1-backend
+# Checkout Calculator Backend (Django)
 
-[![CircleCI](https://circleci.com/gh/csc301-fall-2020/assignment-1-6-jonathanjtang-kralgeliy1-backend.svg?style=shield&circle-token=899863b30b6a235f3c5cc66bc7ace386ddc8ff88)](https://app.circleci.com/pipelines/github/csc301-fall-2020/assignment-1-6-jonathanjtang-kralgeliy1-backend)
+A simple web backend built using Django and a simple SQLite database, for a checkout calculator designed for stores in Ontario, Canada.
 
-Authors: Team 6, Jonathan Tang (JonathanJTang) and İsmail Atadinç (kralgeliy1)
-
-Our Checkout Calculator backend built using Django, shared by both the mobile and web frontends.
-
-Our assignment report is in the root directory of this repository, the file named `CSC301 A1 Report.pdf` (the same document is in all three of our repositories)
-
-Note on CircleCI sticker: the state is not accurate, since CircleCI tasks refused to run (and give a fail status) after the class organization account ran out of credits.
+This was part of a 2-week course project done together with İsmail Atadinç (kralgeliy1).
 
 ## Production link
-Please see our web and mobile frontend repositories for further setup and testing instructions--links to these repositories are on the second page of our report. Here they are again for convenience:
-- [Web Frontend Repo](https://github.com/csc301-fall-2020/assignment-1-6-jonathanjtang-kralgeliy1-web)
-- [Mobile Frontend Repo](https://github.com/csc301-fall-2020/assignment-1-6-jonathanjtang-kralgeliy1-mobile)
+Our backend is hosted on Fly.io, with automated CI/CD through Github actions.
 
-Our backend is hosted on Heroku.
+- A web frontend that works with this backend: [Web Frontend Repo](https://github.com/JonathanJTang/Checkout-Calculator-Frontend)
 
 &nbsp;
 
@@ -25,11 +17,11 @@ Our backend is hosted on Heroku.
 
 ## Reference: Development Environment Setup Instructions (not needed to test our app)
 We ran our code from a Windows Subsystem Linux (WSL) terminal window, but these steps would probably work on Linux machines too.
-1. From the command line, install python module `pipenv` (eg using `pip`) and make sure the `pipenv` command can be accessed in the terminal (WSL: might need to restart the terminal)
-2. Clone this repository and navigate to the directory, ie `assignment-1-6-jonathanjtang-kralgeliy1-backend` (the location is important for `pipenv` to work properly).
+1. From the command line, install python module `pipenv` (eg using `pip3`) and make sure the `pipenv` command can be accessed in the terminal (WSL: might need to restart the terminal)
+2. Clone this repository and navigate to the directory containing the `Pipfile` (the location is important for `pipenv` to work properly).
 3. Run `pipenv install` to create a virtual environment with the necessary dependencies installed.
 4. Run `pipenv shell` to start a shell session under the newly created virtual environment.
 5. Run `cd server`
-6. Run `python manage.py makemigrations`
-7. Run `python manage.py migrate`
-8. Run `python manage.py runserver`
+6. Run `python3 manage.py makemigrations`
+7. Run `python3 manage.py migrate`
+8. Run `python3 manage.py runserver`
