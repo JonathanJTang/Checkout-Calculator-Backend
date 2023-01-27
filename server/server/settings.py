@@ -158,8 +158,13 @@ DATABASES['default'] = dj_database_url.config(
                            conn_max_age=600,
                            default='sqlite:///{}'.format(os.path.join(BASE_DIR, 'db.sqlite3'))
                        )
+DATABASES['inventory'] = {'ENGINE': 'django.db.backends.sqlite3',
+                          'NAME': os.path.join(BASE_DIR, 'inventory.sqlite3'),
+                         }
 
 # SQLite database doesn't need SSL so a hacky workaround for local development
 # options = DATABASES['default'].get('OPTIONS', {})
 # print(options)
 # options.pop('sslmode', None)
+
+DATABASE_ROUTERS = ["checkoutcalculator.dbrouters.InventoryRouter"]

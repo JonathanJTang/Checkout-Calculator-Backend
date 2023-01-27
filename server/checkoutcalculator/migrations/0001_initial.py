@@ -19,6 +19,7 @@ class Migration(migrations.Migration):
                 ('price', models.DecimalField(decimal_places=2, max_digits=12)),
                 ('taxed_item', models.BooleanField(default=True)),
                 ('available_stock', models.IntegerField(default=0)),
+                ('discount', models.DecimalField(decimal_places=2, max_digits=12, default=0.0)),
             ],
         ),
     ]
