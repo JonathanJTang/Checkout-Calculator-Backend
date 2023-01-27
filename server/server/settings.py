@@ -160,6 +160,9 @@ DATABASES['default'] = dj_database_url.config(
                        )
 DATABASES['inventory'] = {'ENGINE': 'django.db.backends.sqlite3',
                           'NAME': os.path.join(BASE_DIR, 'inventory.sqlite3'),
+                          'TEST': {
+                              'DEPENDENCIES': [],
+                          },
                          }
 
 # SQLite database doesn't need SSL so a hacky workaround for local development

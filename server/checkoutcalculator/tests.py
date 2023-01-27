@@ -6,6 +6,7 @@ import decimal
 
 # Create your tests here.
 class ItemModelTest(TestCase):
+    databases = {"inventory"}
 
     @classmethod
     def setUpTestData(cls):
