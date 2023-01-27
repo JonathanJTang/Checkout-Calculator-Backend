@@ -23,12 +23,10 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ always() }}
     needs: [test, flytest]
-    env:
-      SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
     steps:
       - uses: actions/checkout@v3
       - uses: superfly/flyctl-actions/setup-flyctl@master
-      - run: flyctl agent restart && flyctl deploy --remote-only --build-secret SECRET_KEY=${{ env.SECRET_KEY }}
+      - run: flyctl agent restart && flyctl deploy --remote-only --build-secret SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}
   flytest:
     name: Test fly connectivity
     runs-on: ubuntu-latest
