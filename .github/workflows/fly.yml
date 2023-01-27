@@ -6,7 +6,7 @@ on:
 env:
   FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
 jobs:
-  test:
+  test_django:
     name: Run Django tests
     runs-on: ubuntu-latest
     env:
@@ -18,19 +18,18 @@ jobs:
           python-version: '3.8'
           cache: 'pip' # cache pip dependencies
       - run: pip install -r requirements.txt && cd server && python manage.py test --noinput
+  # test_fly:
+  #   name: Test fly connectivity
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: superfly/flyctl-actions/setup-flyctl@master
+  #     - run: flyctl agent restart && flyctl doctor
   deploy:
     name: Deploy app to Fly
     runs-on: ubuntu-latest
-    if: ${{ always() }}
-    needs: [test, flytest]
+    needs: test_django
     steps:
       - uses: actions/checkout@v3
       - uses: superfly/flyctl-actions/setup-flyctl@master
-      - run: flyctl agent restart && flyctl deploy --remote-only --build-secret SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}
-  flytest:
-    name: Test fly connectivity
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: superfly/flyctl-actions/setup-flyctl@master
-      - run: flyctl agent restart && flyctl doctor
+      - run: flyctl agent restart && flyctl deploy --remote-only --build-secret SECRET_KEY='${{ secrets.DJANGO_SECRET_KEY }}'
